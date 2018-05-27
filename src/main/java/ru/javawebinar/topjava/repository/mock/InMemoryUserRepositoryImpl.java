@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class InMemoryUserRepositoryImpl implements UserRepository {
 
     public static final int USER_ID = 1;
-    public static final int ADMIN_ID = 1;
+    public static final int ADMIN_ID = 2;
 
 
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepositoryImpl.class);
