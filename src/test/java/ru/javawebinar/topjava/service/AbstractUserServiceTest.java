@@ -30,7 +30,7 @@ import static ru.javawebinar.topjava.UserTestData.*;
 @RunWith(SpringRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @ActiveProfiles(resolver = ActiveDbProfileResolver.class)
-public class UserServiceTest {
+abstract public class AbstractUserServiceTest extends AbstractServiceTest{
 
     static {
         // Only for postgres driver logging
@@ -39,7 +39,7 @@ public class UserServiceTest {
     }
 
     @Autowired
-    private UserService service;
+    protected UserService service;
 
     @Autowired
     private CacheManager cacheManager;
