@@ -16,6 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.javawebinar.topjava.ActiveDbProfileResolver;
+import ru.javawebinar.topjava.UserTestData;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
@@ -103,5 +104,18 @@ abstract public class AbstractMealServiceTest extends AbstractServiceTest{
         assertMatch(service.getBetweenDates(
                 LocalDate.of(2015, Month.MAY, 30),
                 LocalDate.of(2015, Month.MAY, 30), USER_ID), MEAL3, MEAL2, MEAL1);
+    }
+
+    @Test
+    public void getWithUser() throws Exception {
+        Meal actual = service.getWithUser(ADMIN_MEAL_ID, ADMIN_ID);
+        assertMatch(actual, ADMIN_MEAL1);
+        UserTestData.assertMatch(actual.getUser(), UserTestData.ADMIN);
+    }
+
+    @Test
+    public void getWithUserNotFound() throws Exception {
+        thrown.expect(NotFoundException.class);
+        service.getWithUser(MEAL1_ID, ADMIN_ID);
     }
 }
