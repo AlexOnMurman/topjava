@@ -30,7 +30,7 @@ public class JspMealController extends AbstractMealContoller {
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
         model.addAttribute("meal", super.get(getId(request)));
-        return "redirect:/meals";
+        return "mealForm";
     }
 
     @GetMapping("/create")
@@ -45,7 +45,7 @@ public class JspMealController extends AbstractMealContoller {
                 request.getParameter("description"),
                 Integer.valueOf(request.getParameter("calories")));
 
-        if (request.getParameter("id") == null) {
+        if (request.getParameter("id").isEmpty()) {
             super.create(meal);
         } else {
             super.update(meal, getId(request));

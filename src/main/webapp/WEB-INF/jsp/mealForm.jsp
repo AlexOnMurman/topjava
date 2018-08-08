@@ -26,7 +26,7 @@
             <dd><input type="number" value="${meal.calories}" name="calories" required></dd>
         </dl>
         <button type="submit"><spring:message code="common.save"/> </button>
-        <button onclick="window.history.back()" type="button"><spring:message code="common.cancel" </button>
+        <button onclick="window.history.back()" type="button"><spring:message code="common.cancel"/> </button>
     </form>
 </section>
 <jsp:include page="fragments/footer.jsp"/>

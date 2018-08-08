@@ -29,7 +29,7 @@
             <dd><input type="time" name="startTime" value="${param.startTime}"></dd>
         </dl>
         <dl>
-            <dt><spring:message code="meal.endTime" </dt>
+            <dt><spring:message code="meal.endTime" /></dt>
             <dd><input type="time" name="endTime" value="${param.endTime}"></dd>
         </dl>
         <button type="submit"><spring:message code="meal.filter"/> </button>
