@@ -1,6 +1,9 @@
 package ru.javawebinar.topjava.web;
 
 import org.junit.Test;
+import ru.javawebinar.topjava.AuthorizedUser;
+import ru.javawebinar.topjava.MealTestData;
+import ru.javawebinar.topjava.util.MealsUtil;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,12 +38,7 @@ public class RootControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("meals"))
-                .andExpect(model().attribute("meals", hasSize(6)))
-                .andExpect(model().attribute("meals", hasItem(
-                        allOf(
-                                hasProperty("id", is(MEAL1_ID)),
-                                hasProperty("calories", is(MEAL1.getCalories()))
-                        )
-                )));
+                .andExpect(forwardedUrl("/WEB-INF/jsp/meals.jsp"))
+                .andExpect(model().attribute("meals", MealsUtil.getWithExceeded(MealTestData.MEALS, AuthorizedUser.getCaloriesPerDay())));
     }
 }
